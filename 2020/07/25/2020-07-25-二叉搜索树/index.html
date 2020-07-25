@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      二叉搜索树 | 若花巡的小屋 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="MercerRHX">
+    
+    
+
+    <meta name="description" content="1、二叉搜索树的定义与性质二叉搜索树，又叫二叉排序树或二叉查找树。 二叉搜索树的可以为空，若不为空则满足如下性质：  非空左子树的所有键值小于其根结点的键值 非空右子树的所有键值大于其根结点的键值 左右子树都是二叉搜索树  123456# 树的结点类class TreeNode(object):    def __init__(self, data, left&#x3D;None, right&#x3D;None):">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉搜索树 | 若花巡的小屋">
+<meta property="og:url" content="http://yoursite.com/2020/07/25/2020-07-25-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
+<meta property="og:site_name" content="若花巡的小屋">
+<meta property="og:description" content="1、二叉搜索树的定义与性质二叉搜索树，又叫二叉排序树或二叉查找树。 二叉搜索树的可以为空，若不为空则满足如下性质：  非空左子树的所有键值小于其根结点的键值 非空右子树的所有键值大于其根结点的键值 左右子树都是二叉搜索树  123456# 树的结点类class TreeNode(object):    def __init__(self, data, left&#x3D;None, right&#x3D;None):">
+<meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-07-25T05:46:00.000Z">
+<meta property="article:modified_time" content="2020-07-25T10:22:26.012Z">
+<meta property="article:author" content="MercerRHX">
+<meta name="twitter:card" content="summary">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/uno.css">
+
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+    
+<link rel="stylesheet" href="/css/archive.css">
+
+    
+<link rel="stylesheet" href="/css/china-social-icon.css">
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">若花巡的小屋</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">二叉搜索树</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-07-25" class="post-meta__date date">2020-07-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            </font>
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="1、二叉搜索树的定义与性质"><a href="#1、二叉搜索树的定义与性质" class="headerlink" title="1、二叉搜索树的定义与性质"></a>1、二叉搜索树的定义与性质</h3><p>二叉搜索树，又叫二叉排序树或二叉查找树。</p>
+<p>二叉搜索树的可以为空，若不为空则满足如下性质：</p>
+<ul>
+<li>非空左子树的所有键值小于其根结点的键值</li>
+<li>非空右子树的所有键值大于其根结点的键值</li>
+<li>左右子树都是二叉搜索树</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 树的结点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data, left=None, right=None)</span>:</span></span><br><span class="line">        self.left = left</span><br><span class="line">        self.right = right</span><br><span class="line">        self.data = data</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、树的查找-Find"><a href="#2、树的查找-Find" class="headerlink" title="2、树的查找 Find()"></a>2、树的查找 Find()</h3><ul>
+<li><p>查找从根结点开始，如果树为空，返回None</p>
+</li>
+<li><p>若搜索树非空，则根结点值和要查找元素X进行比较，并进行不同处理</p>
+<ul>
+<li>若X小于根结点的值，则进入左子树中搜索；</li>
+<li>若X大于根结点的值，则进入右子树中搜索；</li>
+<li>若两者的相等，则搜索完成，返回该结点的指针</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Find</span><span class="params">(self, X)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> self:</span><br><span class="line">        <span class="keyword">if</span> self.data &lt; X:</span><br><span class="line">            self = self.right</span><br><span class="line">		<span class="keyword">elif</span> self.data &gt; X:</span><br><span class="line">            self = self.left</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> self</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、查找树的最大元素和最小元素-FindMAX-FindMIN"><a href="#3、查找树的最大元素和最小元素-FindMAX-FindMIN" class="headerlink" title="3、查找树的最大元素和最小元素 FindMAX() FindMIN()"></a>3、查找树的最大元素和最小元素 FindMAX() FindMIN()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMIN</span><span class="params">(self)</span>:</span></span><br><span class="line">	<span class="keyword">while</span> self.left:</span><br><span class="line">        self = self.left</span><br><span class="line">    <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMIN</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> self.right:</span><br><span class="line">        self = self.right</span><br><span class="line">    <span class="keyword">return</span> self</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、二叉搜索树的插入-Insert"><a href="#4、二叉搜索树的插入-Insert" class="headerlink" title="4、二叉搜索树的插入 Insert()"></a>4、二叉搜索树的插入 Insert()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">关键在于找到元素应该插入的位置</span></span><br><span class="line"><span class="string">思路为判断当前结点与插入结点的值的大小，选择正确的路径递归直至叶子结点</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Insert</span><span class="params">(self, X)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self:</span><br><span class="line">        self = TreeNode(X)</span><br><span class="line">    <span class="keyword">elif</span> X &gt; self.data:</span><br><span class="line">        self.Insert(self.right)</span><br><span class="line">    <span class="keyword">elif</span> X &lt; self.data:</span><br><span class="line">        self.Insert(self.left)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、二叉搜索树的删除-Delete"><a href="#5、二叉搜索树的删除-Delete" class="headerlink" title="5、二叉搜索树的删除 Delete()"></a>5、二叉搜索树的删除 Delete()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">要考虑3种情况：</span></span><br><span class="line"><span class="string">	1. 要删除的是叶结点：直接删除，并修改父结点指向其的指针为None</span></span><br><span class="line"><span class="string">	2. 要删除的结点只有一个孩子结点：将其父结点的指针指向要删除节点的孩子结点</span></span><br><span class="line"><span class="string">	3. 要删除的结点有左右子树：使用另一结点替代被删除结点，如右子树的最小元素或左子树的最大元素</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Delete</span><span class="params">(root, X)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        print(<span class="string">"要删除的元素未找到"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> X &gt; root.data:</span><br><span class="line">        root = Delete(root.right, X)</span><br><span class="line">    <span class="keyword">elif</span> X &lt; root.data:</span><br><span class="line">        root = Delete(root.left, X)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 没有子结点的情况</span></span><br><span class="line">        <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">and</span> root.right == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">del</span> root</span><br><span class="line">            temp = FindMIN(root.right)</span><br><span class="line">            root.data = temp.data</span><br><span class="line">            root.right = Delete(root.right, root.data)</span><br><span class="line">        <span class="comment"># 只有一个子结点的情况</span></span><br><span class="line">        temp = root</span><br><span class="line">       	<span class="keyword">elif</span> root.right == <span class="literal">None</span>:</span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">elif</span> root .left == <span class="literal">None</span>:</span><br><span class="line">            root = root.left</span><br><span class="line">		<span class="keyword">del</span> temp</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
