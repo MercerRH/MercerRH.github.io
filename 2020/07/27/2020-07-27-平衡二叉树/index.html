@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      平衡二叉树 | 若花巡的小屋 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="MercerRHX">
+    
+    
+
+    <meta name="description" content="1、平衡二叉树的几个相关定义 平衡因子 BF(T) &#x3D; hL &#x3D; hR 平衡因子 &#x3D; 左子树高度 - 右子树高度  查找长度ASL 查找算法的查找成功时的平均查找长度的缩写，是为确定记录在查找表中的位置，需和给定值进行比较的关键字个数的期望值。   2、平衡二叉树（AVL树）的定义 平衡二叉树任意结点左右子树高度之差不大于1，即 |BF(T)| &lt;&#x3D; 1；  平衡二叉树可以为空；  n个结点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平衡二叉树 | 若花巡的小屋">
+<meta property="og:url" content="http://yoursite.com/2020/07/27/2020-07-27-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="若花巡的小屋">
+<meta property="og:description" content="1、平衡二叉树的几个相关定义 平衡因子 BF(T) &#x3D; hL &#x3D; hR 平衡因子 &#x3D; 左子树高度 - 右子树高度  查找长度ASL 查找算法的查找成功时的平均查找长度的缩写，是为确定记录在查找表中的位置，需和给定值进行比较的关键字个数的期望值。   2、平衡二叉树（AVL树）的定义 平衡二叉树任意结点左右子树高度之差不大于1，即 |BF(T)| &lt;&#x3D; 1；  平衡二叉树可以为空；  n个结点">
+<meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-07-27T08:19:00.000Z">
+<meta property="article:modified_time" content="2020-07-28T06:36:48.244Z">
+<meta property="article:author" content="MercerRHX">
+<meta name="twitter:card" content="summary">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/uno.css">
+
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+    
+<link rel="stylesheet" href="/css/archive.css">
+
+    
+<link rel="stylesheet" href="/css/china-social-icon.css">
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">若花巡的小屋</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">平衡二叉树</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-07-27" class="post-meta__date date">2020-07-27</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            </font>
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="1、平衡二叉树的几个相关定义"><a href="#1、平衡二叉树的几个相关定义" class="headerlink" title="1、平衡二叉树的几个相关定义"></a>1、平衡二叉树的几个相关定义</h3><ul>
+<li><p>平衡因子</p>
+<p>BF(T) = hL = hR</p>
+<p>平衡因子 = 左子树高度 - 右子树高度</p>
+</li>
+<li><p>查找长度ASL</p>
+<p>查找算法的查找成功时的平均查找长度的缩写，是为确定记录在查找表中的位置，需和给定值进行比较的关键字个数的期望值。</p>
+</li>
+</ul>
+<h3 id="2、平衡二叉树（AVL树）的定义"><a href="#2、平衡二叉树（AVL树）的定义" class="headerlink" title="2、平衡二叉树（AVL树）的定义"></a>2、平衡二叉树（AVL树）的定义</h3><ul>
+<li><p>平衡二叉树任意结点左右子树高度之差不大于1，即 <strong>|BF(T)| &lt;= 1</strong>；</p>
+</li>
+<li><p>平衡二叉树可以为空；</p>
+</li>
+<li><p>n个结点的平衡二叉树的最大高度为O(log2n)；</p>
+<p>证明：</p>
+<ul>
+<li>设 <strong>n(h)</strong> 为高度为 <strong>h</strong> 的平衡二叉树所需要的最小结点数</li>
+<li><strong>n(h) = n(h-1) + n(h-2)</strong></li>
+<li>可以发现与斐波那契数列具有相似之处</li>
+<li>找出规律后根据斐波那契数列求和公式得出：<strong>h = O(log2n)</strong></li>
+</ul>
+<p>该定理同时说明，一颗AVL树的平均查找长度为O(log2n)</p>
+</li>
+</ul>
+<h3 id="3、平衡二叉树的调整"><a href="#3、平衡二叉树的调整" class="headerlink" title="3、平衡二叉树的调整"></a>3、平衡二叉树的调整</h3><p>在为AVL树插入新结点时，有时二叉树的平衡会被破坏（即二叉树的左右子树高度差绝对值大于1）。此时需要对树进行调整，使得树既满足查找条件，又满足平衡条件。</p>
+<h4 id="3-1-调整的方法"><a href="#3-1-调整的方法" class="headerlink" title="3.1 调整的方法"></a>3.1 调整的方法</h4><p>在一个AVL树中，标记每个结点的BF值。</p>
+<p>将元素插入该树，并重新计算插入后树中每个结点的BF值。</p>
+<p>若某一结点的BF值的绝对值大于2，则说明树的平衡被破坏。该结点被称为<strong>不平衡的“发现者”</strong>。插入结点被称为<strong>“麻烦结点”</strong></p>
+<h4 id="3-2-RR旋转（右单旋）"><a href="#3-2-RR旋转（右单旋）" class="headerlink" title="3.2 RR旋转（右单旋）"></a>3.2 RR旋转（右单旋）</h4><p>若麻烦结点在发现者右子树的右边，则该次插入被称为RR插入，该次旋转被称为RR旋转。</p>
+<p><strong>旋转方法：</strong>将 BF 值为 -1 的结点移至 BF 值为 -2 的结点处，BF = -2 处结点变为 BF = -1 结点的左子树</p>
+<h4 id="3-3-LL旋转（左单旋）"><a href="#3-3-LL旋转（左单旋）" class="headerlink" title="3.3 LL旋转（左单旋）"></a>3.3 LL旋转（左单旋）</h4><p>若麻烦结点在发现者左子树的左边，则该次插入被称为LL插入，该次旋转被称为LL旋转。</p>
+<p><strong>旋转方法：</strong>同RR旋转</p>
+<h4 id="3-4-LR旋转"><a href="#3-4-LR旋转" class="headerlink" title="3.4 LR旋转"></a>3.4 LR旋转</h4><p>若麻烦结点在发现者左子树的右边，则该次插入被称为LR插入，该次旋转被称为LR旋转。</p>
+<p><strong>旋转方法：</strong>先进行一次LL旋转，再进行一次RR旋转</p>
+<h4 id="3-5-RL旋转"><a href="#3-5-RL旋转" class="headerlink" title="3.5 RL旋转"></a>3.5 RL旋转</h4><p>若麻烦结点在发现者右子树的左边，则该次插入被称为RL插入，该次旋转被称为RL旋转。</p>
+<p><strong>旋转方法：</strong>先进行一次RR旋转，再进行一次LL旋转</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
