@@ -16,15 +16,15 @@
     
     
 
-    <meta name="description" content="1、图的概念图表示多对多的关系 包含：  一组顶点：通常用 V（Vertex）表示顶点集合 一组边：通常用 E（Edge）表示边的集合 边是顶点对：(v, w) ∈ E，其中 v, w ∈ V 有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线） 不考虑重边和自回路    数据类型定义：  类型名称：图（Graph） 数据对象集：G(V, E) 由一个非空的有限顶点集合 V 和一">
+    <meta name="description" content="1、图的概念图表示多对多的关系 包含：  一组顶点：通常用 V（Vertex）表示顶点集合 一组边：通常用 E（Edge）表示边的集合 边是顶点对：(v, w) ∈ E，其中 v, w ∈ V 有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线） 不考虑重边和自回路    图分为有向图与无向图 数据类型定义：  类型名称：图（Graph） 数据对象集：G(V, E) 由一个非空的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图 | 若花巡的小屋">
 <meta property="og:url" content="http://yoursite.com/2020/08/15/2020-08-15-%E5%9B%BE/index.html">
 <meta property="og:site_name" content="若花巡的小屋">
-<meta property="og:description" content="1、图的概念图表示多对多的关系 包含：  一组顶点：通常用 V（Vertex）表示顶点集合 一组边：通常用 E（Edge）表示边的集合 边是顶点对：(v, w) ∈ E，其中 v, w ∈ V 有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线） 不考虑重边和自回路    数据类型定义：  类型名称：图（Graph） 数据对象集：G(V, E) 由一个非空的有限顶点集合 V 和一">
+<meta property="og:description" content="1、图的概念图表示多对多的关系 包含：  一组顶点：通常用 V（Vertex）表示顶点集合 一组边：通常用 E（Edge）表示边的集合 边是顶点对：(v, w) ∈ E，其中 v, w ∈ V 有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线） 不考虑重边和自回路    图分为有向图与无向图 数据类型定义：  类型名称：图（Graph） 数据对象集：G(V, E) 由一个非空的">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-15T10:57:00.000Z">
-<meta property="article:modified_time" content="2020-08-15T11:07:35.149Z">
+<meta property="article:modified_time" content="2020-08-18T11:57:36.666Z">
 <meta property="article:author" content="MercerRHX">
 <meta name="twitter:card" content="summary">
     
@@ -190,6 +190,7 @@ classes that you can use:
 </ul>
 </li>
 </ul>
+<p><strong>图分为有向图与无向图</strong></p>
 <p><strong>数据类型定义：</strong></p>
 <ul>
 <li><strong>类型名称：</strong>图（Graph）</li>
@@ -202,6 +203,43 @@ classes that you can use:
 <li>BFS(Graph G, Vertex v)：从顶点 v 出发广度优先遍历图 G</li>
 <li>ShortestPath(Graph G, Vertex v, int Dist[])：计算图 G 中顶点 v 到任意其他顶点的最短距离</li>
 <li>MST(Graph G)：计算图 G 的最小生成树</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、图的表示方法"><a href="#2、图的表示方法" class="headerlink" title="2、图的表示方法"></a>2、图的表示方法</h3><p>怎样再程序中表现图？</p>
+<ul>
+<li><p><strong>邻接矩阵</strong></p>
+<p>最直观的方法就是使用二维数组，行列分别为图中每个顶点，行列对应的坐标中的值表示这两点之间是否存在边。这样的二维数组称为邻接矩阵。</p>
+<ul>
+<li>优点：<ul>
+<li>直观、简单、便于理解</li>
+<li>方便检查任意顶点间是否存在边</li>
+<li>便于找任意顶点的所有“邻接点”，即有边直接相连的顶点</li>
+<li>方便计算任意顶点的“度”（从该边出发的边数为“出度”，指向该点的边数为“入度”）</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>浪费空间，例如稀疏图（点很多但边很少），则有大量无效元素</li>
+<li>浪费时间，如统计稀疏图中共有多少条边</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>邻接表</strong></p>
+<p>使用指针数组，每个指针链表对应邻接矩阵中一行。指针链表只存该行中的非零元素。所有指针链表的集合叫做邻接表。</p>
+<ul>
+<li>优点：<ul>
+<li>便于查找任意顶点的所有“邻接点”</li>
+<li>可以节约稀疏图的空间（只需N个头指针加上2E个结点）</li>
+<li>便于计算任意顶点的度，但只能计算入度，出度需要构造“逆邻接表”</li>
+<li>方便检查任意一对顶点之间是否存在边</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>密集图时浪费空间</li>
+<li>查找不便</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
