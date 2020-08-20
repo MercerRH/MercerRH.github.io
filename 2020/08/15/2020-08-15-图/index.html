@@ -24,7 +24,7 @@
 <meta property="og:description" content="1、图的概念图表示多对多的关系 包含：  一组顶点：通常用 V（Vertex）表示顶点集合 一组边：通常用 E（Edge）表示边的集合 边是顶点对：(v, w) ∈ E，其中 v, w ∈ V 有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线） 不考虑重边和自回路    图分为有向图与无向图 数据类型定义：  类型名称：图（Graph） 数据对象集：G(V, E) 由一个非空的">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-15T10:57:00.000Z">
-<meta property="article:modified_time" content="2020-08-18T11:57:36.666Z">
+<meta property="article:modified_time" content="2020-08-20T08:34:30.500Z">
 <meta property="article:author" content="MercerRHX">
 <meta name="twitter:card" content="summary">
     
@@ -242,6 +242,32 @@ classes that you can use:
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="3、图的遍历"><a href="#3、图的遍历" class="headerlink" title="3、图的遍历"></a>3、图的遍历</h3><ul>
+<li>深度优先遍历（DFS）：<ul>
+<li>若顶点存在边，则一直遍历直至没有边或到达出发点</li>
+<li>一层遍历完毕后返回上一个顶点继续遍历</li>
+</ul>
+</li>
+<li>广度优先遍历（BFS）：<ul>
+<li>若顶点存在边，则先遍历完与之相连的所有顶点再继续遍历下一个顶点</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、图的连通"><a href="#4、图的连通" class="headerlink" title="4、图的连通"></a>4、图的连通</h3><ul>
+<li><strong>连通</strong>：若从V到W存在一条（无向）路径，则称V和W是连通的</li>
+<li><strong>路径</strong>：V到W的路径是一系列顶点{V, v1, v2, …, vn, W}的集合其中任一对相邻的顶点间都有图中的边。</li>
+<li><strong>路径的长度</strong>：路径中的边数（若带权，则为所有边的权重和）。若V到W之间的所有顶点都不同，则称简单路径</li>
+<li><strong>回路</strong>：起点等于终点的路径</li>
+<li><strong>连通图</strong>：图中任意两顶点均连通</li>
+<li><strong>连通分量</strong>：无向图的极大连通子图，图中任一顶点都有到达其它任何顶点的路径<ul>
+<li>极大顶点树：再加一个顶点就不连通了</li>
+<li>极大边数：包含子图中所有顶点相连的所有边</li>
+</ul>
+</li>
+<li><strong>强连通</strong>：有向图中顶点V和W之间存在双向路径，则V和W是强连通的</li>
+<li><strong>强连通图</strong>：有向图中任意两顶点均强连通</li>
+<li><strong>强连通分量</strong>：有向图的极大强连通子图</li>
 </ul>
 
   </section>
