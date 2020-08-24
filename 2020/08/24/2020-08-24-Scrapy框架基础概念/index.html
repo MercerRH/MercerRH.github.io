@@ -7,7 +7,7 @@
     
 
     <title>
-      page 2 | 若花巡的小屋 
+      Scrapy框架基础概念 | 若花巡的小屋 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,11 +16,15 @@
     
     
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="page 2 | 若花巡的小屋">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+    <meta name="description" content="1、Scrapy 与 requests 的区别requests 爬虫的速度较慢，抓取效率较低。Scrapy 可以较好地解决这些问题。 Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架，采用 Twisted 异步网络框架以加快下载速度。 2、 Scrapy 的爬虫流程爬虫引擎分为4个模块，分别为Schedduler调度器、Downloader下载器、Spiders爬虫、Item">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy框架基础概念 | 若花巡的小屋">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/2020-08-24-Scrapy%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="若花巡的小屋">
+<meta property="og:description" content="1、Scrapy 与 requests 的区别requests 爬虫的速度较慢，抓取效率较低。Scrapy 可以较好地解决这些问题。 Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架，采用 Twisted 异步网络框架以加快下载速度。 2、 Scrapy 的爬虫流程爬虫引擎分为4个模块，分别为Schedduler调度器、Downloader下载器、Spiders爬虫、Item">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-08-24T08:34:00.000Z">
+<meta property="article:modified_time" content="2020-08-24T09:12:11.716Z">
 <meta property="article:author" content="MercerRHX">
 <meta name="twitter:card" content="summary">
     
@@ -50,8 +54,8 @@
     </span>
 
     
- 
-<header class="panel-cover">
+
+<header class="panel-cover panel-cover--collapsed">
 
 
   <div class="panel-main">
@@ -150,104 +154,54 @@ classes that you can use:
         <div class="content-wrapper__inner entry">
             
 
+<article class="post-container post-container--single">
 
-   <!-- do nothing -->
-
-
-<div class="main-post-list">
-    <ol class="post-list">
+  <header class="post-header">
     
-    
-    <li>
+    <h1 class="post-title">Scrapy框架基础概念</h1>
 
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/17/2020-07-17-栈与队列的Python实现/" title="link to 栈与队列的Python实现">栈与队列的Python实现</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-17" class="post-list__meta--date date">2020-07-17</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/16/2020-07-16-Python套接字socket复习/" title="link to Python 套接字 socket 复习">Python 套接字 socket 复习</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-16" class="post-list__meta--date date">2020-07-16</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/11/2020-07-11-二叉树/" title="link to 二叉树">二叉树</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-11" class="post-list__meta--date date">2020-07-11</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/09/2020-07-09-线性存储/" title="link to 线性结构的链式储存">线性结构的链式储存</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-09" class="post-list__meta--date date">2020-07-09</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-  </ol>
-
-  <hr class="post-list__divider " />
-
-<nav class="pagination" role="navigation">
-    
-    	
-          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/#blog">&larr; Prev </a>
-        
     
 
-    <span class="pagination__page-number"> 2 / 2</span>
+    <div class="post-meta">
+      <time datetime="2020-08-24" class="post-meta__date date">2020-08-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
     
     
-</nav>
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="1、Scrapy-与-requests-的区别"><a href="#1、Scrapy-与-requests-的区别" class="headerlink" title="1、Scrapy 与 requests 的区别"></a>1、Scrapy 与 requests 的区别</h3><p>requests 爬虫的速度较慢，抓取效率较低。Scrapy 可以较好地解决这些问题。</p>
+<p>Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架，采用 Twisted 异步网络框架以加快下载速度。</p>
+<h3 id="2、-Scrapy-的爬虫流程"><a href="#2、-Scrapy-的爬虫流程" class="headerlink" title="2、 Scrapy 的爬虫流程"></a>2、 Scrapy 的爬虫流程</h3><p>爬虫引擎分为4个模块，分别为<code>Schedduler</code>调度器、<code>Downloader</code>下载器、<code>Spiders</code>爬虫、<code>Item Pipeline</code>数据队列。</p>
+<ul>
+<li><strong>Scheduler</strong>：一个队列，用于存放url（requests对象），并将url地址交给Downloader</li>
+<li><strong>Downloader</strong>：得到url地址，发送请求，获取响应，将响应内容交给Spiders</li>
+<li><strong>Spiders</strong>：从响应中提取数据与url地址，url地址（组装为requests对象）交给Scheduler保存，数据交给Item Pipeline</li>
+<li><strong>Item Pipeline</strong>：进行数据的处理与保存</li>
+</ul>
+<p>模块间的操作均是通过爬虫引擎来完成的。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
 
 
-</div>
+</article>
+
+
             <footer class="footer">
 
     <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a></span>
@@ -275,6 +229,19 @@ classes that you can use:
 
 
     
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
     
     
     <!--kill ie6 -->
