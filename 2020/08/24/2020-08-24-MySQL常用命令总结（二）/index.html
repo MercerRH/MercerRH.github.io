@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      MySQL常用命令总结（二） | 若花巡的小屋 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="MercerRHX">
+    
+    
+
+    <meta name="description" content="7、创建计算字段存储在数据库表中的数据一般不是应用程序所需要的格式，有时我们需要对数据进行一些操作之后再输出。 例如，想在一个字段中既显示公司名，又显示公司的地址，但这两个信息包含在不同的表列中。此时就需要计算字段。  Concat()  拼接 Concat() 函数将值联结在一起构成单个值，即拼接两个列 1234567select Concat(&lt;col1&gt;, &#39;:&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL常用命令总结（二） | 若花巡的小屋">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/2020-08-24-MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="若花巡的小屋">
+<meta property="og:description" content="7、创建计算字段存储在数据库表中的数据一般不是应用程序所需要的格式，有时我们需要对数据进行一些操作之后再输出。 例如，想在一个字段中既显示公司名，又显示公司的地址，但这两个信息包含在不同的表列中。此时就需要计算字段。  Concat()  拼接 Concat() 函数将值联结在一起构成单个值，即拼接两个列 1234567select Concat(&lt;col1&gt;, &#39;:&#39;">
+<meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-08-24T06:08:00.000Z">
+<meta property="article:modified_time" content="2020-08-24T07:31:57.145Z">
+<meta property="article:author" content="MercerRHX">
+<meta name="twitter:card" content="summary">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/uno.css">
+
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+    
+<link rel="stylesheet" href="/css/archive.css">
+
+    
+<link rel="stylesheet" href="/css/china-social-icon.css">
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">若花巡的小屋</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">MySQL常用命令总结（二）</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-08-24" class="post-meta__date date">2020-08-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/MySQL/">MySQL</a>
+            </font>
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="7、创建计算字段"><a href="#7、创建计算字段" class="headerlink" title="7、创建计算字段"></a>7、创建计算字段</h3><p>存储在数据库表中的数据一般不是应用程序所需要的格式，有时我们需要对数据进行一些操作之后再输出。</p>
+<p>例如，想在一个字段中既显示公司名，又显示公司的地址，但这两个信息包含在不同的表列中。此时就需要计算字段。</p>
+<ul>
+<li><p><strong>Concat()  拼接</strong></p>
+<p>Concat() 函数将值联结在一起构成单个值，即拼接两个列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select Concat(&lt;col1&gt;, &#39;:&#39;, &lt;col2&gt;) from &lt;tab1&gt;;</span><br><span class="line">-- 输出结果：</span><br><span class="line">-- col1_val1:col2:val1</span><br><span class="line">-- col1_val2:col2:val2</span><br><span class="line">-- ...</span><br><span class="line"></span><br><span class="line">-- 可以使用AS更改输出的表名，即使用别名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RTrim()  去除空格</strong></p>
+<p>RTrim()/LTrim()/Trim()  三个函数分别对应去除右边/左边/两边的空格。</p>
+<p>使用这三个函数可以整理MySQL的输出，删除多余的空格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select Concat(RTrim(&lt;col1&gt;), &#39;:&#39;, RTrim(&lt;col2&gt;)) from &lt;tab1&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>运算符</strong></p>
+<p>可以使用运算符输出值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &lt;col1&gt;, &lt;col2&gt;, &lt;col1&gt;*&lt;col2&gt; as col1_2 from &lt;tab&gt;</span><br></pre></td></tr></table></figure>
+
+<p>MySQL支持的运算符为有：</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">加</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">减</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">乘</td>
+</tr>
+<tr>
+<td align="center">/</td>
+<td align="center">除</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="8、使用数据处理函数"><a href="#8、使用数据处理函数" class="headerlink" title="8、使用数据处理函数"></a>8、使用数据处理函数</h3><p>RTrim() Concat() 就是函数的例子。大多数SQL支持以下类型的函数：</p>
+<ul>
+<li><p>文本处理函数：</p>
+<p>RTrim() 就是一个文本处理函数。其它文本处理函数有：</p>
+<ul>
+<li><p><strong>Upper()  将文本转为大写</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select Upper(&lt;col&gt;) from &lt;tabl&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Soundex()  返回串的SOUNDEX值</strong></p>
+<p>可以将任何文本串转为描述其语音表示的字母数字。</p>
+<p>该函数较为特殊，考虑到了类似的发音字符和音节，因此可以对串进行发音比较而不是字母比较。例如：</p>
+<p>students 表中存在一个字段 name 中有一个 Lee 值，但你只知道发音为 Lie ，因此普通查找很难找到正确的数据。因此需要使用 Soundex() 函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from students where Soundex(name) &#x3D; Soundex(&#39;Lee&#39;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>常用的文本处理函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Left()</td>
+<td align="center">返回串左边的字符</td>
+</tr>
+<tr>
+<td align="center">Length()</td>
+<td align="center">返回串的长度</td>
+</tr>
+<tr>
+<td align="center">Locate()</td>
+<td align="center">找出串的一个子串</td>
+</tr>
+<tr>
+<td align="center">Lower()</td>
+<td align="center">将串转换为小写</td>
+</tr>
+<tr>
+<td align="center">LTrim()</td>
+<td align="center">去掉串左边的空格</td>
+</tr>
+<tr>
+<td align="center">Right()</td>
+<td align="center">返回串右边的字符</td>
+</tr>
+<tr>
+<td align="center">RTrim()</td>
+<td align="center">去掉串右边的空格</td>
+</tr>
+<tr>
+<td align="center">Soundex()</td>
+<td align="center">返回串的SOUNDEX值</td>
+</tr>
+<tr>
+<td align="center">SubString()</td>
+<td align="center">返回子串的字符</td>
+</tr>
+<tr>
+<td align="center">Upper()</td>
+<td align="center">将串转换为大写</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p><strong>日期和时间处理函数</strong></p>
+</li>
+</ul>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
