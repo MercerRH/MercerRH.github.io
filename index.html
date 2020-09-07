@@ -1,392 +1,313 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>若花巡的小屋</title><meta name="description" content="车万人&#x2F;STG党&#x2F;音游人&#x2F;端游爱好者（特指PC）&#x2F;Python天下第一！"><meta name="author" content="莫瑟,mercerfuran@gmail.com"><meta name="copyright" content="莫瑟"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="若花巡的小屋"><meta property="og:url" content="http://yoursite.com/"><meta property="og:site_name" content="若花巡的小屋"><meta property="og:description" content="车万人&#x2F;STG党&#x2F;音游人&#x2F;端游爱好者（特指PC）&#x2F;Python天下第一！"><meta property="og:image" content="http://yoursite.com/img/avatar.png"><meta property="article:published_time" content="2020-09-07T12:47:55.024Z"><meta property="article:modified_time" content="2020-09-07T12:47:55.024Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
-    
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
 
-    <title>
-      若花巡的小屋 
-    </title>
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="MercerRHX">
-    
-    
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="若花巡的小屋">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="若花巡的小屋">
-<meta property="og:locale" content="ch">
-<meta property="article:author" content="MercerRHX">
-<meta name="twitter:card" content="summary">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    
-<link rel="stylesheet" href="/css/uno.css">
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-09-07 20:47:55'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
 
-    
-<link rel="stylesheet" href="/css/highlight.css">
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-    
-<link rel="stylesheet" href="/css/archive.css">
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="full_page" id="page-header" style="background-image: url(/img/bg.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">若花巡的小屋</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">若花巡的小屋</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/MercerRH" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mercerfuran@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/24/2020-08-24-Scrapy%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Scrapy框架基础概念">Scrapy框架基础概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-24T08:34:00.000Z" title="发表于 2020-08-24 16:34:00">2020-08-24</time></span></div><div class="content">1、Scrapy 与 requests 的区别requests 爬虫的速度较慢，抓取效率较低。Scrapy 可以较好地解决这些问题。
+Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架，采用 Twisted 异步网络框架以加快下载速度。
+2、 Scrapy 的爬虫流程爬虫引擎分为4个模块，分别为Schedduler调度器、Downloader下载器、Spiders爬虫、Item Pipeline数据队列。
 
-    
-<link rel="stylesheet" href="/css/china-social-icon.css">
+Scheduler：一个队列，用于存放url（requests对象），并将url地址交给Downloader
+Downloader：得到url地址，发送请求，获取响应，将响应内容交给Spiders
+Spiders：从响应中提取数据与url地址，url地址（组装为requests对象）交给Scheduler保存，数据交给Item Pipeline
+Item Pipeline：进行数据的处理与保存
 
+模块间的操作均是通过爬虫引擎来完成的。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/24/2020-08-24-MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" title="MySQL常用命令总结（二）">MySQL常用命令总结（二）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-24T06:08:00.000Z" title="发表于 2020-08-24 14:08:00">2020-08-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/MySQL/">MySQL</a></span></div><div class="content">7、创建计算字段存储在数据库表中的数据一般不是应用程序所需要的格式，有时我们需要对数据进行一些操作之后再输出。
+例如，想在一个字段中既显示公司名，又显示公司的地址，但这两个信息包含在不同的表列中。此时就需要计算字段。
 
-<meta name="generator" content="Hexo 4.2.1"></head>
-<body>
+Concat()  拼接
+Concat() 函数将值联结在一起构成单个值，即拼接两个列
+1234567select Concat(&lt;col1&gt;, &#39;:&#39;, &lt;col2&gt;) from &lt;tab1&gt;;-- 输出结果：-- col1_val1:col2:val1-- col1_val2:col2:val2-- ...-- 可以使用AS更改输出的表名，即使用别名
 
-    <span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
+RTrim()  去除空格
+RTrim()/LTrim()/Trim()  三个函数分别对应去除右边/左边/两边的空格。
+使用这三个函数可以整理MySQL的输出，删除多余的空格。
+1select Concat(RTrim(&lt;col1&gt;), &#39;:&#39;, RTrim(&lt;col2&gt;)) from &lt;tab1&gt;;
 
-    
- 
-<header class="panel-cover">
+运算符
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/15/2020-08-15-%E5%9B%BE/" title="图">图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-15T10:57:00.000Z" title="发表于 2020-08-15 18:57:00">2020-08-15</time></span></div><div class="content">1、图的概念图表示多对多的关系
+包含：
 
-
-  <div class="panel-main">
-
-  
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">若花巡的小屋</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
+一组顶点：通常用 V（Vertex）表示顶点集合
+一组边：通常用 E（Edge）表示边的集合
+边是顶点对：(v, w) ∈ E，其中 v, w ∈ V
+有向边 &lt;v, w&gt; 表示从 v 指向 w 的边（单行线）
+不考虑重边和自回路
 
 
 
-        </div>
+图分为有向图与无向图
+数据类型定义：
 
-      </div>
+类型名称：图（Graph）
+数据对象集：G(V, E) 由一个非空的有限顶点集合 V 和一个有限边集合 E 组成
+操作集：对于任意图 G ∈ Graph，以及 v ∈ V，e ∈ E
+建立并返回空图
+InsertVertex(Graph G, Vertex v)：将 v 插入 G
+InsertEdge(Graph G, Edge e)：将 e 插入 G
+DFS(Graph G, Vertex v)：从顶点 v 出发深度优先遍历图 G
+BFS(Graph G, Vertex v)：从顶点 v 出发广度优先遍历图 G
+ShortestPath(Graph G, Vertex v, int Dist[])：计算图 G 中顶点 v 到任意其他顶点的最短距离
+MST(G ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/12/2020-08-12-%E5%A0%86/" title="堆">堆</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-12T00:49:00.000Z" title="发表于 2020-08-12 08:49:00">2020-08-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">堆的概念有时，我们在对一系列任务进行处理时并不一定按照先后顺序处理，而是需要按先级进行访问；例如系统进程调度。
+相对应的，有一种抽象数据类型称为优先队列，取出元素的顺序是按照元素的优先权大小，而非先后顺序。
+那么怎样实现优先队列呢？
 
-    </div>
+若采用数组进行实现：插入元素总插入尾部，复杂度为O(1)；删除元素则查找队列中的最大（或最小）关键字（优先度），复杂度为O(n)；删除后需要移动元素，复杂度为O(n)
 
-    <div class="panel-cover--overlay"></div>
-  </div>
-</header>
+若采用链表实现：插入元素总插入链表头部，复杂度为O(1)；删除元素则查找链表结点中的最大（或最小）关键字（优先度），复杂度为O(n)；删除只需删掉结点，复杂度为O(1)
 
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
+采用有序数组实现：即插入时排好序，首先找到合适的位置，复杂度为O(n) 或O(log2n)，然后移动元素并插入，复杂度为O(n)；删除只需删掉最大或最小元素即可，复杂度为O(1)
+
+采用有序链表实现：找到合适位置，复杂度O(n)，插入元素，复杂度O(1)；删除元素，复杂度O(1)
+
+
+可以用二叉树来实现吗？
+想到二叉树，第一个想到的是二叉搜索树。但优先队列的特点是取出最大或最小值，若使用二叉搜索树的话，会导致不断删除节 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/12/2020-08-12-%E4%BA%8C%E5%8F%89%E6%A0%91%E2%80%94%E2%80%94%E5%88%A4%E6%96%AD%E4%B8%A4%E6%A3%B5%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%98%AF%E5%90%A6%E4%B8%BA%E5%90%8C%E4%B8%80%E6%A3%B5%E6%A0%91/" title="二叉树——判断两棵二叉搜索树是否为同一棵树">二叉树——判断两棵二叉搜索树是否为同一棵树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-12T00:13:00.000Z" title="发表于 2020-08-12 08:13:00">2020-08-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">
+原题描述：
+给定几棵二叉树序列，判断这些二叉树是否为同一棵树
+序列输入：序列长度+要判断的树数量+判断基准树序列+要判断的树序列
+例如：
+4 2
+3 1 4 2
+3 4 1 2
+3 2 1 4
+
+怎样判断两棵二叉搜索树是否相同？有三种方法：
+
+分别建两棵树的判别方法：
+判断两棵树的根结点与左右子树是否相同，递归进行判断即可；
+
+不建树的判别方法：
+序列的第一个数为根结点，将序列中小于根结点的数组为一组，大于根节点的数组为一组，保持数与数之间的相对顺序不变，判断者两组数是否相同即可；
+
+建一棵树的判别方法：
+将判断基准树建立出来，接着按照要判别的树序列查找基准树，若查找过程中出现了先前未访问过的结点，则不为同一棵树；
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/07/2020-08-07-MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" title="MySQL常用命令总结（一）">MySQL常用命令总结（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-07T05:56:00.000Z" title="发表于 2020-08-07 13:56:00">2020-08-07</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/MySQL/">MySQL</a></span></div><div class="content">1、选择数据库与数据表1234USE &lt;database_name&gt;;  -- 选择数据库SHOW DATABASES;  -- 显示所有数据库SHOW TABLES;  -- 显示选择的数据库中所有表SHOW COLUMNS FROM &lt;table_name&gt;;  -- 要求给出一个表名，对每个字段返回一行
+
+2、检索数据
+SELECT 检索语句
+  123select &lt;column_name&gt; from &lt;table_name&gt;;  -- 检索一列select &lt;column1_name&gt;， &lt;column2_name&gt;, ... from &lt;table_name&gt;;  -- 检索多列select * from &lt;table_name&gt;;  -- 检索表内所有字段
+
+DISTINCT 检索不同行
+1select distinct &lt;column_name&gt; from &lt;table_name&gt;;  -- 检索列中不同的值
+
+LIMIT 限制检索结果
+12selec ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/07/27/2020-07-27-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/" title="平衡二叉树">平衡二叉树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-27T08:19:00.000Z" title="发表于 2020-07-27 16:19:00">2020-07-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">1、平衡二叉树的几个相关定义
+平衡因子
+BF(T) = hL = hR
+平衡因子 = 左子树高度 - 右子树高度
+
+查找长度ASL
+查找算法的查找成功时的平均查找长度的缩写，是为确定记录在查找表中的位置，需和给定值进行比较的关键字个数的期望值。
+
+
+2、平衡二叉树（AVL树）的定义
+平衡二叉树任意结点左右子树高度之差不大于1，即 |BF(T)| &lt;= 1；
+
+平衡二叉树可以为空；
+
+n个结点的平衡二叉树的最大高度为O(log2n)；
+证明：
+
+设 n(h) 为高度为 h 的平衡二叉树所需要的最小结点数
+n(h) = n(h-1) + n(h-2)
+可以发现与斐波那契数列具有相似之处
+找出规律后根据斐波那契数列求和公式得出：h = O(log2n)
+
+该定理同时说明，一颗AVL树的平均查找长度为O(log2n)
+
+
+3、平衡二叉树的调整在为AVL树插入新结点时，有时二叉树的平衡会被破坏（即二叉树的左右子树高度差绝对值大于1）。此时需要对树进行调整，使得树既满足查找条件，又满足平衡条件。
+3.1 调整的方法在一个AVL树中，标记每个结点的BF值。
+将元素插入该树，并重新计算插入后树中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/07/25/2020-07-25-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" title="二叉搜索树">二叉搜索树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-25T05:46:00.000Z" title="发表于 2020-07-25 13:46:00">2020-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">1、二叉搜索树的定义与性质二叉搜索树，又叫二叉排序树或二叉查找树。
+二叉搜索树的可以为空，若不为空则满足如下性质：
+
+非空左子树的所有键值小于其根结点的键值
+非空右子树的所有键值大于其根结点的键值
+左右子树都是二叉搜索树
+
+123456# 树的结点类class TreeNode(object):    def __init__(self, data, left=None, right=None):        self.left = left        self.right = right        self.data = data
+
+
+
+2、树的查找 Find()
+查找从根结点开始，如果树为空，返回None
+
+若搜索树非空，则根结点值和要查找元素X进行比较，并进行不同处理
+
+若X小于根结点的值，则进入左子树中搜索；
+若X大于根结点的值，则进入右子树中搜索；
+若两者的相等，则搜索完成，返回该结点的指针
+
+
+
+123456789def Find(self, X):    while self:        if self.data &lt; X:            sel ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/07/23/2020-07-23-Python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95ORM%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Python实现简单ORM（二）">Python实现简单ORM（二）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T08:37:00.000Z" title="发表于 2020-07-23 16:37:00">2020-07-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">Web后端开发</a></span></div><div class="content">
+元类实现curd中的删改查操作
+与增加数据相同，只需要将用户传入的参数传入 sql 语句即可。
+这三个操作要注意的两部分分别为：
+
+与插入操作不同，删除、查找与修改操作若未接受到字段名，不能以None替换，而应该略过；
+查找与修改操作中不仅仅需要条件参数，还需要“修改后的值”与“要返回的字段”，因此需要使用不同的传参形式，我这里查找使用元组传入要返回的字段，修改使用字典传入要修改的字段与值。
+
+问题在于，四个操作分别对应四个类，需要将四个类统合为一个Model类以便于模型类继承不然就变成每个操作分别继承与不同的类这种麻烦的结构了。
+最初的想法是将这四个类定义在继承于Model_metaclass元类的Model类中，并继承Model类，但发现这样的定义存在两个问题：
+
+四个类无法在Model类中被定义的同时继承Model类；
+Model类与四个类的__init__()函数会出现各种各样的错误；
+可能会与Model_metaclass冲突。
+
+
+目前不知道为什么会出现这些问题，以后会仔细研究一下。
+
+我的解决方案是：
+为每个操作分别定义一个函数（称为操作函数），函数内包含对应操作的类（ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/07/22/2020-07-22-Python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95ORM/" title="Python实现简单ORM（一）">Python实现简单ORM（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-22T08:32:00.000Z" title="发表于 2020-07-22 16:32:00">2020-07-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">Web后端开发</a></span></div><div class="content">1、ORMORM，对象关系映射（Object Relational Mapping），是指通过使用描述对象和数据库之间映射的元数据，将面向对象语言程序中的对象自动持久化到关系数据库中。简单来说，ORM就是通过对对象进行操作以操作数据库。
+2、元类什么是元类？
+在Python中，一切都是对象。而拥有创建实例对象能力的类，同样也是对象。我们可以将它赋值给一个变量，可以拷贝它，可以为它增加属性，可以将它作为函数参数进行传递。
+而元类就是指用来创建类的类。在 Python 中，元类为 type。
+3、元类实现 ORMORM的核心就是通过实例对象来操作数据库。而生成这一实例对象的类是由用户定义的，因此我们需要对用户定义的类进行操作，即获取用户的类属性并生成相应的SQL命令。
+以下面的模型类为例：
+1234class test_model(metaclass=Model):  # Model为我们需要实现的元类    name = ('user_name', 'varchar(30)')  # 使用元组储存字段名与字段类型    age = ('user_age', 'int unsigned') ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">莫瑟</div><div class="author-info__description">车万人/STG党/音游人/端游爱好者（特指PC）/Python天下第一！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/xxxxxx" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/MercerRH" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:mercerfuran@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/24/2020-08-24-Scrapy%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Scrapy框架基础概念">Scrapy框架基础概念</a><time datetime="2020-08-24T08:34:00.000Z" title="发表于 2020-08-24 16:34:00">2020-08-24</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/24/2020-08-24-MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" title="MySQL常用命令总结（二）">MySQL常用命令总结（二）</a><time datetime="2020-08-24T06:08:00.000Z" title="发表于 2020-08-24 14:08:00">2020-08-24</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/15/2020-08-15-%E5%9B%BE/" title="图">图</a><time datetime="2020-08-15T10:57:00.000Z" title="发表于 2020-08-15 18:57:00">2020-08-15</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/12/2020-08-12-%E5%A0%86/" title="堆">堆</a><time datetime="2020-08-12T00:49:00.000Z" title="发表于 2020-08-12 08:49:00">2020-08-12</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/12/2020-08-12-%E4%BA%8C%E5%8F%89%E6%A0%91%E2%80%94%E2%80%94%E5%88%A4%E6%96%AD%E4%B8%A4%E6%A3%B5%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%98%AF%E5%90%A6%E4%B8%BA%E5%90%8C%E4%B8%80%E6%A3%B5%E6%A0%91/" title="二叉树——判断两棵二叉搜索树是否为同一棵树">二叉树——判断两棵二叉搜索树是否为同一棵树</a><time datetime="2020-08-12T00:13:00.000Z" title="发表于 2020-08-12 08:13:00">2020-08-12</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">Web后端开发</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="card-category-list-name">数据结构</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"><span class="card-category-list-name">网络编程</span><span class="card-category-list-count">1</span></a></li>
             
-
-
-   <!-- do nothing -->
-
-
-<div class="main-post-list">
-    <ol class="post-list">
-    
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/24/2020-08-24-Scrapy框架基础概念/" title="link to Scrapy框架基础概念">Scrapy框架基础概念</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-24" class="post-list__meta--date date">2020-08-24</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/24/2020-08-24-MySQL常用命令总结（二）/" title="link to MySQL常用命令总结（二）">MySQL常用命令总结（二）</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-24" class="post-list__meta--date date">2020-08-24</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/15/2020-08-15-图/" title="link to 图">图</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-15" class="post-list__meta--date date">2020-08-15</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/12/2020-08-12-堆/" title="link to 堆">堆</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-12" class="post-list__meta--date date">2020-08-12</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/12/2020-08-12-二叉树——判断两棵二叉搜索树是否为同一棵树/" title="link to 二叉树——判断两棵二叉搜索树是否为同一棵树">二叉树——判断两棵二叉搜索树是否为同一棵树</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-12" class="post-list__meta--date date">2020-08-12</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/08/07/2020-08-07-MySQL常用命令总结（一）/" title="link to MySQL常用命令总结（一）">MySQL常用命令总结（一）</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-08-07" class="post-list__meta--date date">2020-08-07</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/27/2020-07-27-平衡二叉树/" title="link to 平衡二叉树">平衡二叉树</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-27" class="post-list__meta--date date">2020-07-27</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/25/2020-07-25-二叉搜索树/" title="link to 二叉搜索树">二叉搜索树</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-25" class="post-list__meta--date date">2020-07-25</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/23/2020-07-23-Python实现简单ORM（二）/" title="link to Python实现简单ORM（二）">Python实现简单ORM（二）</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-23" class="post-list__meta--date date">2020-07-23</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2020/07/22/2020-07-22-Python实现简单ORM/" title="link to Python实现简单ORM（一）">Python实现简单ORM（一）</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2020-07-22" class="post-list__meta--date date">2020-07-22</time> 
-      </div>
-
-      <div class="excerpt">
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-  </ol>
-
-  <hr class="post-list__divider " />
-
-<nav class="pagination" role="navigation">
-    
-
-    <span class="pagination__page-number"> 1 / 2</span>
-    
-    
-        <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/2/">Next &rarr;</a>
-    
-</nav>
-
-
-</div>
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a></span>
-    
-</footer>
-        </div>
-    </div>
-
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
-
-
-    
-    
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
-
-</body>
-</html>
+            </ul></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">8</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">11.4k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-09-07T12:47:54.996Z"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 莫瑟</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "给岁月以文明，而不是给文明以岁月,“欢迎来到食物链的顶端”".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '给岁月以文明，而不是给文明以岁月'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
