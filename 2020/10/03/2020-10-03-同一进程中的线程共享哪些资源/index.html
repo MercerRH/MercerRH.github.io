@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同一进程中的线程共享哪些资源 | 若花巡的小屋</title><meta name="description" content="线程与进程的概念进程：具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单位。 线程：进程的一个实体，是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源（如程序计数器,一组寄存器和栈），但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。  一个线程可以创建和撤销另一"><meta name="keywords" content="线程,进程"><meta name="author" content="莫瑟,mercerfuran@gmail.com"><meta name="copyright" content="莫瑟"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://mercerrh.github.io/2020/10/03/2020-10-03-%E5%90%8C%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%93%AA%E4%BA%9B%E8%B5%84%E6%BA%90/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="同一进程中的线程共享哪些资源"><meta property="og:url" content="https://mercerrh.github.io/2020/10/03/2020-10-03-%E5%90%8C%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%93%AA%E4%BA%9B%E8%B5%84%E6%BA%90/"><meta property="og:site_name" content="若花巡的小屋"><meta property="og:description" content="线程与进程的概念进程：具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单位。 线程：进程的一个实体，是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源（如程序计数器,一组寄存器和栈），但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。  一个线程可以创建和撤销另一"><meta property="og:image" content="https://mercerrh.github.io/img/avatar.png"><meta property="article:published_time" content="2020-10-03T09:24:00.000Z"><meta property="article:modified_time" content="2020-10-03T09:24:22.785Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-10-03 17:24:22'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程与进程的概念"><span class="toc-number">1.</span> <span class="toc-text">线程与进程的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程与进程的资源共享"><span class="toc-number">2.</span> <span class="toc-text">线程与进程的资源共享</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程与线程的关系"><span class="toc-number">2.1.</span> <span class="toc-text">进程与线程的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内核态线程实现"><span class="toc-number">2.2.</span> <span class="toc-text">内核态线程实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#那么操作系统是如何实现管理线程的呢？"><span class="toc-number">2.2.1.</span> <span class="toc-text">那么操作系统是如何实现管理线程的呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#那么用户态是如何实现管理线程的呢？"><span class="toc-number">2.2.2.</span> <span class="toc-text">那么用户态是如何实现管理线程的呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#现在操作系统的线程实现模型"><span class="toc-number">2.2.3.</span> <span class="toc-text">现在操作系统的线程实现模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程从用户态切换到内核态"><span class="toc-number">2.2.4.</span> <span class="toc-text">线程从用户态切换到内核态</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">若花巡的小屋</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">同一进程中的线程共享哪些资源</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-03T09:24:00.000Z" title="发表于 2020-10-03 17:24:00">2020-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-03T09:24:22.785Z" title="更新于 2020-10-03 17:24:22">2020-10-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="线程与进程的概念"><a href="#线程与进程的概念" class="headerlink" title="线程与进程的概念"></a>线程与进程的概念</h2><p><strong>进程：</strong>具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单位。</p>
+<p><strong>线程：</strong>进程的一个实体，是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源（如程序计数器,一组寄存器和栈），但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。</p>
+<hr>
+<p>一个线程可以创建和撤销另一个线程;   同一个进程中的多个线程之间可以并发执行。</p>
+<p>进程在执行过程中拥有独立的内存单元，而该进程的多个线程共享内存，从而极大地提高了程序的运行效率。 </p>
+<p>每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。 </p>
+<p>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。</p>
+<p>在很多现代操作系统中，一个进程的（虚）地址空间大小为4G，分为系统（内核？）空间和用户空间两部分，系统空间为所有进程共享，而用户空间是独立的，一般WINDOWS进程的用户空间为2G。 </p>
+<h2 id="线程与进程的资源共享"><a href="#线程与进程的资源共享" class="headerlink" title="线程与进程的资源共享"></a>线程与进程的资源共享</h2><p>一个进程中的所有线程共享该进程的地址空间，但<strong>它们有各自独立的（/私有的）栈(stack)</strong>，Windows线程的缺省堆栈大小为1M。堆(heap)的分配与栈有所不同，一般是一个进程有一个C运行时堆，<strong>这个堆为本进程中所有线程共享</strong>，windows进程还有所谓进程默认堆，用户也可以创建自己的堆。 </p>
+<p>用操作系统术语，线程切换的时候实际上切换的是一个可以称之为线程控制块的结构（TCB?），里面保存所有将来用于恢复线程环境必须的信息，包括所有必须保存的寄存器集，线程的状态等。</p>
+<ul>
+<li><p><strong>堆</strong></p>
+<p><strong>大家共有的空间</strong>，分全局堆和局部堆。</p>
+<ul>
+<li>全局堆：所有没有分配的空间</li>
+<li>局部堆：用户分配的空间。</li>
+</ul>
+<p>堆在操作系统对进程初始化的时候分配，运行过程中也可以向系统要额外的堆，但是记得用完了要还给操作系统，要不然就是内存泄漏。</p>
+</li>
+<li><p><strong>栈</strong></p>
+<p><strong>是每个线程独有的</strong>，用于保存其运行状态和局部自动变量。栈在线程开始的时候初始化，每个线程的栈互相独立，因此，栈是线程安全的。操作系统在切换线程的时候会自动的切换栈，就是切换 SS/ESP 寄存器。栈空间不需要在高级语言里面显式的分配和释放。</p>
+</li>
+</ul>
+<h3 id="进程与线程的关系"><a href="#进程与线程的关系" class="headerlink" title="进程与线程的关系"></a>进程与线程的关系</h3><p>进程简单来说就是程序的一次执行。</p>
+<p>进程是为了在CPU上实现多道编程而发明的一个概念。</p>
+<p>事实上我们说线程是进程里面的一个执行上下文，或者执行序列，显然一个进程可以同时拥有多个执行序列，更加详细的描述是，舞台上有多个演员同时出场，而这些演员和舞台就构成了一出戏，类比进程和线程，每个演员是一个线程，舞台是地址空间，这个同一个地址空间里面的所有线程就构成了进程。</p>
+<p>比如当我们打开一个word程序，其实已经同时开启了多个线程，这些线程一个负责显示，一个接受输入，一个定时进行存盘，这些线程一起运转让我们感到我们的输入和屏幕显示同时发生，而不用键入一些字符等好长时间才能显示到屏幕上。</p>
+<hr>
+<p>线程管理：</p>
+<p>将线程共有的信息存放在进程控制块中，将线程独有的信息存放在线程控制块中。</p>
+<p>那么如何区分哪些信息是共享的？哪些信息是独享的呢？</p>
+<p>一般的评价标准是：如果某些资源不独享会导致线程运行错误，则该资源就由每个线程独享，而其他资源都由进程里面的所有线程共享。</p>
+<p><strong>一般情况下线程共享资源与独享资源的划分：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">线程共享资源</th>
+<th align="center">线程独享资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">地址空间</td>
+<td align="center">程序计数器</td>
+</tr>
+<tr>
+<td align="center">全局变量</td>
+<td align="center">寄存器</td>
+</tr>
+<tr>
+<td align="center">打开的文件</td>
+<td align="center">栈</td>
+</tr>
+<tr>
+<td align="center">子进程</td>
+<td align="center">状态字</td>
+</tr>
+<tr>
+<td align="center">闹铃</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">信号及信号服务程序</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">记账信息</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<hr>
+<p>那么对于进程及线程的实现做如何解释呢？</p>
+<p>首先应该明白进程的调度，创建等实质上都是由操作系统实现的，所以说<strong>进程的实现只能由操作系统内核来实现，而不存在用户态实现</strong>的情况。但是对于线程就不同了，<strong>线程的管理者可以是用户也可以是操作系统本身</strong>，线程是进程内部的东西，当然存在由进程直接管理线程的可能性。因此线程的实现就应该分为内核态线程实现和用户态线程实现。</p>
+<hr>
+<h3 id="内核态线程实现"><a href="#内核态线程实现" class="headerlink" title="内核态线程实现"></a>内核态线程实现</h3><p>线程是进程的不同执行序列，也就是说线程是独立运行的基本单位，也是CPU调度的基本单位。</p>
+<h4 id="那么操作系统是如何实现管理线程的呢？"><a href="#那么操作系统是如何实现管理线程的呢？" class="headerlink" title="那么操作系统是如何实现管理线程的呢？"></a>那么操作系统是如何实现管理线程的呢？</h4><ul>
+<li><p>首先操作系统向管理进程一样，应该保持维护线程的所有资源，将线程控制块存放在操作系统的内核空间中。那么此时操作系统就同时掌管进程控制块和线程控制块。</p>
+<ul>
+<li><p>操作系统管理线程的好处是：</p>
+<ul>
+<li>用户编程简单；</li>
+<li>如果一个线程执行阻塞操作，操作系统可以从容的调度另外一个线程的执行。</li>
+</ul>
+</li>
+<li><p>内核线程的实现缺点是：</p>
+<ul>
+<li>效率低，因为线程在内核态实现，每次线程切换都需要陷入到内核，由操作系统来调度，而有用户态切换到内核态是要话费很多时间的，另外内核态实现会占用内核稀有的资源，因为操作系统要维护线程列表，操作系统所占内核空间一旦装载后就无法动态改变，并且线程的数量远远大于进程的数量，随着线程数的增加内核将耗尽；</li>
+<li>内核态的实现需要修改操作系统，这个是谁都不想要做的事情；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="那么用户态是如何实现管理线程的呢？"><a href="#那么用户态是如何实现管理线程的呢？" class="headerlink" title="那么用户态是如何实现管理线程的呢？"></a>那么用户态是如何实现管理线程的呢？</h4><p>用户态管理线程就是用户自己做线程的切换，自己管理线程的信息，操作系统无需知道线程的存在。</p>
+<p>在用户态下进行线程的管理需要用户创建一个调度线程。一个线程在执行完一段时间后主动把资源释放给其他线程使用，而在内核态下则无需如此，因为操作系统可通过周期性的时钟中断把控制权夺过来，在用户态实现情况下，执行系统的调度器也是线程，没有能力夺取控制权。</p>
+<ul>
+<li><p>用户态实现有什么优点？</p>
+<ul>
+<li><p>首先是灵活，因为操作系统不用知道线程的存在，所以任何操作系统上都能应用；</p>
+</li>
+<li><p>其次，线程切换快，因为切换在用户态进行，无需陷入带内核态；</p>
+</li>
+<li><p>再次，不用修改操作系统实现容易。</p>
+</li>
+</ul>
+</li>
+<li><p>用户态实现的缺点呢？</p>
+<ul>
+<li><p>首先编程起来很诡异，由于在用户台下各个进程间需要相互合作才能正常运转。那么在编程时必须考虑什么情况下让出CPU，让其他的线程运行，而让出时机的选择对线程的效率和可靠性有很大影响，这个并不容易做到；</p>
+</li>
+<li><p>其次，用户态线程实现无法完全达到线程提出所要达到的目的：进程级多道编程；如果在执行过程中一个线程受阻，它将无法将控制权交出来，这样整个进程都无法推进。操作系统随即把CPU控制权交给另外一个进程。这样，一个线程受阻造成整个进程受阻，我们期望的通过线程对进程实施分身的计划就失败了。这是用户态线程致命的缺点。</p>
+</li>
+<li><p>调度器激活：线程阻塞后，CPU控制权交给了操作系统，要激活受阻进程的线程，唯一的办法就是让操作系统在进程切换时先不切换，而是通知受阻的进程执行系统（即调用执行系统），并问其是否还有别的线程可以执行。如果有，将CPU控制权交给该受阻进程的执行系统线程，从而调度另一个可以执行的线程到CPU上。一个进程挂起后，操作系统并不立即切换到别的进程上，而是给该进程二次机会，让其继续执行。如果该进程只有一个线程，或者其所有线程都已经阻塞，则控制权将再次返回给操作系统。而现在，操作系统就会切换到其他线程了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="现在操作系统的线程实现模型"><a href="#现在操作系统的线程实现模型" class="headerlink" title="现在操作系统的线程实现模型"></a>现在操作系统的线程实现模型</h4><p>鉴于用户态与内核态都存在缺陷，现代操作将两者结合起来。</p>
+<p>用户态的执行负责进程内部线程在非阻塞时的切换；内核态的操作系统负责阻塞线程的切换，即我们同时实现内核态和用户态线程管理。每个内核态线程可以服务一个或者更多个用户态线程。</p>
+<h4 id="线程从用户态切换到内核态"><a href="#线程从用户态切换到内核态" class="headerlink" title="线程从用户态切换到内核态"></a>线程从用户态切换到内核态</h4><p>什么情况下会造成线程从用户态到内核态的切换呢？</p>
+<p>首先，如果在程序运行过程中发生中断或者异常，系统将自动切换到内核态来运行中断或异常处理机制。</p>
+<p>此外，程序进行系统调用也会从用户态切换到内核态。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:mercerfuran@gmail.com">莫瑟</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mercerrh.github.io/2020/10/03/2020-10-03-%E5%90%8C%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%93%AA%E4%BA%9B%E8%B5%84%E6%BA%90/">https://mercerrh.github.io/2020/10/03/2020-10-03-%E5%90%8C%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%93%AA%E4%BA%9B%E8%B5%84%E6%BA%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mercerrh.github.io" target="_blank">若花巡的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a><a class="post-meta__tags" href="/tags/%E8%BF%9B%E7%A8%8B/">进程</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/09/15/2020-09-15-HTTP%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HTTP请求过程</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 莫瑟</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
