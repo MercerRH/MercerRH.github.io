@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ubuntu18.04更新Python版本时遇到的坑 | 若花巡的小屋</title><meta name="description" content="起因在 Win10 上使用 mirai bot 发送Image类的消息时报了个很奇怪的错误，和Base类中的__setattr__方法有关； 而在 ubuntu 虚拟机里运行时出现了另一个完全不同的错误：无法导入某个包。 检查了一下后发现两个系统的 Python 版本不相同（win python3.8，ubuntu python3.6），猜测是 Python 版本的缘故，遂重装虚拟机，在新的 ub"><meta name="keywords" content="ubuntu,坑"><meta name="author" content="莫瑟,mercerfuran@gmail.com"><meta name="copyright" content="莫瑟"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://mercerrh.github.io/2020/11/01/2020-11-01-Ubuntu18.04%E6%9B%B4%E6%96%B0Python%E7%89%88%E6%9C%AC%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Ubuntu18.04更新Python版本时遇到的坑"><meta property="og:url" content="https://mercerrh.github.io/2020/11/01/2020-11-01-Ubuntu18.04%E6%9B%B4%E6%96%B0Python%E7%89%88%E6%9C%AC%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"><meta property="og:site_name" content="若花巡的小屋"><meta property="og:description" content="起因在 Win10 上使用 mirai bot 发送Image类的消息时报了个很奇怪的错误，和Base类中的__setattr__方法有关； 而在 ubuntu 虚拟机里运行时出现了另一个完全不同的错误：无法导入某个包。 检查了一下后发现两个系统的 Python 版本不相同（win python3.8，ubuntu python3.6），猜测是 Python 版本的缘故，遂重装虚拟机，在新的 ub"><meta property="og:image" content="https://mercerrh.github.io/img/avatar.png"><meta property="article:published_time" content="2020-11-01T03:08:00.000Z"><meta property="article:modified_time" content="2020-11-01T08:56:20.799Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-01 16:56:20'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">23</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#起因"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装新版本的Python"><span class="toc-number">2.1.</span> <span class="toc-text">安装新版本的Python</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#源码编译安装"><span class="toc-number">2.1.1.</span> <span class="toc-text">源码编译安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过-apt-安装"><span class="toc-number">2.1.2.</span> <span class="toc-text">通过 apt 安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改默认-Python-版本"><span class="toc-number">2.2.</span> <span class="toc-text">修改默认 Python 版本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户级修改"><span class="toc-number">2.2.1.</span> <span class="toc-text">用户级修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统级修改"><span class="toc-number">2.2.2.</span> <span class="toc-text">系统级修改</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#基于软链接"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">基于软链接</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基于update-alternatives"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">基于update-alternatives</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可能出现的错误"><span class="toc-number">3.</span> <span class="toc-text">可能出现的错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pip-错误"><span class="toc-number">3.1.</span> <span class="toc-text">pip 错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完全卸载某版本-Python"><span class="toc-number">4.</span> <span class="toc-text">完全卸载某版本 Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载-Python3-9"><span class="toc-number">4.1.</span> <span class="toc-text">卸载 Python3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载-Python3-9-及其依赖"><span class="toc-number">4.2.</span> <span class="toc-text">卸载 Python3.9 及其依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除-Python3-9"><span class="toc-number">4.3.</span> <span class="toc-text">清除 Python3.9</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">若花巡的小屋</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Ubuntu18.04更新Python版本时遇到的坑</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-01T03:08:00.000Z" title="发表于 2020-11-01 11:08:00">2020-11-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-11-01T08:56:20.799Z" title="更新于 2020-11-01 16:56:20">2020-11-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ubuntu/">ubuntu</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>在 Win10 上使用 mirai bot 发送<code>Image</code>类的消息时报了个很奇怪的错误，和<code>Base</code>类中的<code>__setattr__</code>方法有关；</p>
+<p>而在 ubuntu 虚拟机里运行时出现了另一个完全不同的错误：无法导入某个包。</p>
+<p>检查了一下后发现两个系统的 Python 版本不相同（win python3.8，ubuntu python3.6），猜测是 Python 版本的缘故，遂重装虚拟机，在新的 ubuntu 中尝试安装了 Pyhon3.9 并使用<code>update-alternatives</code>将默认版本从 3.6 替换为了 3.9，安装完后出现了下列问题：</p>
+<ul>
+<li>pip 命令报错</li>
+<li>系统调用报错</li>
+<li>…</li>
+</ul>
+<p>无奈只能回滚快照，重新安装一遍一步步解决这些坑</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="安装新版本的Python"><a href="#安装新版本的Python" class="headerlink" title="安装新版本的Python"></a>安装新版本的Python</h3><p>有两种方法：添加 ppa 源进行在线安装或使用源码编译的方式安装</p>
+<h4 id="源码编译安装"><a href="#源码编译安装" class="headerlink" title="源码编译安装"></a>源码编译安装</h4><ul>
+<li><p><strong>安装编译依赖项</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install -y wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>下载源码包</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0b4.tgz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -zxvf Python-3.9.0b4.tgz  <span class="comment"># 解压源码包</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>编译安装</strong></p>
+<p>  进入解压的包目录中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">编译参数设置</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure --prefix=/usr/<span class="built_in">local</span>/python3</span></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make</span></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo make install</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="通过-apt-安装"><a href="#通过-apt-安装" class="headerlink" title="通过 apt 安装"></a>通过 apt 安装</h4><ul>
+<li><p>安装依赖包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install software-properties-common</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加 deadsnakes PPA 源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo add-apt-repository ppa:deadsnakes/ppa</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 Python3.9</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install python3.9</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="修改默认-Python-版本"><a href="#修改默认-Python-版本" class="headerlink" title="修改默认 Python 版本"></a>修改默认 Python 版本</h3><h4 id="用户级修改"><a href="#用户级修改" class="headerlink" title="用户级修改"></a>用户级修改</h4><p>为某个特定用户修改Python版本，只需要在其home目录下创建一个alias。</p>
+<ul>
+<li><p>打开该用户的~/.bashrc文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim ~/.bashrc</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加新的别名来修改默认Python版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias python='/usr/bin/python3.9'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新登录或者重新加载.bashrc文件，使操作生效：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> . ~/.bashrc</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="系统级修改"><a href="#系统级修改" class="headerlink" title="系统级修改"></a>系统级修改</h4><h5 id="基于软链接"><a href="#基于软链接" class="headerlink" title="基于软链接"></a>基于软链接</h5><ul>
+<li><p>先删除默认的Python软链接：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo rm /usr/bin/python</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个新的软链接指向需要的Python版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -s /usr/bin/python3.9 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h5 id="基于update-alternatives"><a href="#基于update-alternatives" class="headerlink" title="基于update-alternatives"></a>基于update-alternatives</h5><ul>
+<li><p>列出所有可用的python替代版本信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> update-alternatives --list python</span></span><br><span class="line">update-alternatives: 错误: 无 python 的候选项</span><br></pre></td></tr></table></figure>
+
+<p>该错误信息表示 update-alternatives 没有添加 Python 的替代版本；</p>
+</li>
+<li><p>将 Python 的替代版本添加进去：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1</span></span><br><span class="line">update-alternatives: 使用 /usr/bin/python3.6 来在自动模式中提供 /usr/bin/python (python) </span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2</span></span><br><span class="line">update-alternatives: 使用 /usr/bin/python3.9 来在自动模式中提供 /usr/bin/python (python)</span><br></pre></td></tr></table></figure>
+
+<p>install选项使用了多个参数用于创建符号链接。最后一个参数指定了此选项的优先级，如果我们没有手动来设置替代选项，那么具有最高优先级的选项就会被选中。</p>
+<p>这个例子中，我们为 /usr/bin/python3.9 设置的优先级为2，所以 update-alternatives 命令会自动将它设置为默认 Python 版本；</p>
+</li>
+</ul>
+<blockquote>
+<p> 下面为常用命令：</p>
+</blockquote>
+<ul>
+<li><p>列出可用的 Python 版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> update-alternatives --list python</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在任意 Python 版本中切换：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> update-alternatives --config python</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当系统不再存在某个Python替代版本时，移除某个版本的 Python：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo update-alternatives --remove python /usr/bin/python3.6</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="可能出现的错误"><a href="#可能出现的错误" class="headerlink" title="可能出现的错误"></a>可能出现的错误</h2><h3 id="pip-错误"><a href="#pip-错误" class="headerlink" title="pip 错误"></a>pip 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip --version</span></span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/local/bin/pip", line 7, in &lt;module&gt;</span><br><span class="line">    from pip import main</span><br><span class="line">ImportError: No module named 'pip'</span><br></pre></td></tr></table></figure>
+
+<p>解决方法是将pip版本更改为符合当前的Python版本。对于Python2或者Python3：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-pip #python2</span><br><span class="line">sudo apt-get install python3-pip #python3</span><br></pre></td></tr></table></figure>
+
+<p>安装pip之后，可能版本不是最新的，需要更新：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p>另外，将pip更新为10.0.0之后的版本时，库里面的函数有所变动会出现如下问题：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip3 --version</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/bin/pip3", line 9, in &lt;module&gt;</span><br><span class="line">    from pip import main</span><br><span class="line">ImportError: cannot import name 'main'</span><br></pre></td></tr></table></figure>
+
+<p>只需要修改/usr/bin/pip和/usr/bin/pip3文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pip <span class="keyword">import</span> main</span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"><span class="keyword">from</span> pip._internal <span class="keyword">import</span> main</span><br></pre></td></tr></table></figure>
+
+<h2 id="完全卸载某版本-Python"><a href="#完全卸载某版本-Python" class="headerlink" title="完全卸载某版本 Python"></a>完全卸载某版本 Python</h2><h3 id="卸载-Python3-9"><a href="#卸载-Python3-9" class="headerlink" title="卸载 Python3.9"></a>卸载 Python3.9</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get remove python3.9</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="卸载-Python3-9-及其依赖"><a href="#卸载-Python3-9-及其依赖" class="headerlink" title="卸载 Python3.9 及其依赖"></a>卸载 Python3.9 及其依赖</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get remove --auto-remove python3.8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="清除-Python3-9"><a href="#清除-Python3-9" class="headerlink" title="清除 Python3.9"></a>清除 Python3.9</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge python3.8</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line">sudo apt-get purge --auto-remove python3.8</span><br></pre></td></tr></table></figure>
+
+<p>此方法卸载python比较彻底，所以适合更换python版本时使用。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:mercerfuran@gmail.com">莫瑟</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mercerrh.github.io/2020/11/01/2020-11-01-Ubuntu18.04%E6%9B%B4%E6%96%B0Python%E7%89%88%E6%9C%AC%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">https://mercerrh.github.io/2020/11/01/2020-11-01-Ubuntu18.04%E6%9B%B4%E6%96%B0Python%E7%89%88%E6%9C%AC%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mercerrh.github.io" target="_blank">若花巡的小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ubuntu/">ubuntu</a><a class="post-meta__tags" href="/tags/%E5%9D%91/">坑</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/10/19/2020-10-19-MySQL%E6%80%A7%E8%83%BD%E5%89%96%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL性能剖析与优化（一）</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 莫瑟</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
